@@ -17,17 +17,24 @@ CHIP Mux4Way16 {
 
     PARTS:
 
+
+
     Not(in=sel[0], out=notzerozero);
     Not(in=sel[1], out=notzeroone);
     Xor(a=sel[0], b=sel[1], out=oneortheother);
 
-    Mux(a=, b=, sel=sel[0], out= );
-    Mux(a=, b=, sel=sel[1], out= );
     And(a=notzerozero, b=notzeroone, out=seliszero);
     And(a=oneortheother, b=sel[0], out=selisone);
     And(a=oneortheother, b=sel[1], out=selistwo);
     And(a=sel[0], b=sel[1], out=selisthree);
-    Mux16(a=a, b=b, sel=selectorone, out=out);
-    Mux16(a=c, b=d, sel=selectortwo, out=out);
+
+    Mux16(a=d[0..15], b=a[0..15], sel=seliszero, out=aord);
+
+    Mux16(a=aord, b=b[0..15], sel=selisone, out=abord);
+
+    Mux16(a=abord, b=c[0..15], sel=selistwo, out=out);
+
+
+
 
 }
