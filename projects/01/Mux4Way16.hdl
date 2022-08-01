@@ -29,9 +29,7 @@ CHIP Mux4Way16 {
     And(a=sel[0], b=sel[1], out=selisthree);
 
     Mux16(a=d[0..15], b=a[0..15], sel=seliszero, out=aord);
-
     Mux16(a=aord, b=b[0..15], sel=selisone, out=abord);
-
     Mux16(a=abord, b=c[0..15], sel=selistwo, out=out);
 
 
